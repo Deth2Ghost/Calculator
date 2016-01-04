@@ -33,6 +33,9 @@ import javax.swing.JLabel;
 public class Calculator {
 	String temp = "0";
 	String displayT = "";
+	String memoryPlus;
+	String memoryMinus;
+	double memory;
 	double result = 0;
 	double var1 = 0;
 	double var2 = 0;
@@ -152,6 +155,9 @@ public class Calculator {
 		JButton btnNewButton = new JButton("MC");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				memory = 0;
+				memoryMinus = "";
+				memoryPlus = "";
 			}
 		});
 		btnNewButton.setBounds(10, 57, 60, 23);
@@ -160,7 +166,19 @@ public class Calculator {
 		JButton btnMr = new JButton("MR");
 		btnMr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
+				if (memory != 0){
+				if (znak != "0"){
+					displayT=Double.toString(memory);
+					display.setText(displayT);
+					tempField.setText(temp+znak+displayT);
+				}else{
+					temp=Double.toString(memory);
+					display.setText(temp);
+					tempField.setText(temp);
+					}
+				temp="0";
+				displayT="";
+			}}
 		});
 		btnMr.setBounds(80, 57, 60, 23);
 		panelButtons.add(btnMr);
@@ -168,6 +186,13 @@ public class Calculator {
 		JButton btnM = new JButton("M+");
 		btnM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (znak != "0"){
+					memoryPlus=displayT;
+					
+				}else{
+					memoryPlus=temp;
+				}
+				memory = memory + Double.parseDouble(memoryPlus);
 			}
 		});
 		btnM.setBounds(150, 57, 60, 23);
@@ -176,6 +201,12 @@ public class Calculator {
 		JButton btnM_1 = new JButton("M-");
 		btnM_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (znak != "0"){
+					memoryMinus=Double.toString(Math.abs(Double.parseDouble(displayT)));
+				}else{
+					memoryMinus=Double.toString(Math.abs(Double.parseDouble(temp)));;
+				}
+				memory = memory - Double.parseDouble(memoryMinus);
 			}
 		});
 		btnM_1.setBounds(220, 57, 60, 23);
@@ -190,7 +221,7 @@ public class Calculator {
 				znak = "/";
 				display.setText(znak);
 				var1 = Double.parseDouble(temp);
-				if (result != 0){
+				if (result != 0) {
 					display.setText(Double.toString(result));
 					temp = display.getText();
 				}
@@ -199,7 +230,6 @@ public class Calculator {
 				} else {
 					tempField.setText(temp + znak);
 				}
-				
 
 			}
 		});
@@ -212,7 +242,7 @@ public class Calculator {
 				znak = "*";
 				display.setText(znak);
 				var1 = Double.parseDouble(temp);
-				if (result != 0){
+				if (result != 0) {
 					display.setText(Double.toString(result));
 					temp = display.getText();
 				}
@@ -232,7 +262,7 @@ public class Calculator {
 				znak = "-";
 				display.setText(znak);
 				var1 = Double.parseDouble(temp);
-				if (result != 0){
+				if (result != 0) {
 					display.setText(Double.toString(result));
 					temp = display.getText();
 				}
@@ -251,11 +281,10 @@ public class Calculator {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				
 				znak = "+";
 				display.setText(znak);
 				var1 = Double.parseDouble(temp);
-				if (result != 0){
+				if (result != 0) {
 					display.setText(Double.toString(result));
 					temp = display.getText();
 				}
@@ -280,8 +309,8 @@ public class Calculator {
 					display.setText(displayT + "7");
 					displayT = display.getText();
 					tempField.setText(temp + znak + displayT);
-				} 
-				if (displayT == "" && temp != "0"){
+				}
+				if (displayT == "" && temp != "0") {
 					display.setText(temp + "7");
 					temp = display.getText();
 					tempField.setText(temp);
@@ -290,7 +319,7 @@ public class Calculator {
 					display.setText("7");
 					temp = display.getText();
 					tempField.setText(temp);
-				} 
+				}
 			}
 		});
 		button_1.setBounds(10, 137, 60, 23);
@@ -303,8 +332,8 @@ public class Calculator {
 					display.setText(displayT + "8");
 					displayT = display.getText();
 					tempField.setText(temp + znak + displayT);
-				} 
-				if (displayT == "" && temp != "0"){
+				}
+				if (displayT == "" && temp != "0") {
 					display.setText(temp + "8");
 					temp = display.getText();
 					tempField.setText(temp);
@@ -313,7 +342,7 @@ public class Calculator {
 					display.setText("8");
 					temp = display.getText();
 					tempField.setText(temp);
-				} 
+				}
 			}
 		});
 		button_4.setBounds(80, 137, 60, 23);
@@ -326,8 +355,8 @@ public class Calculator {
 					display.setText(displayT + "9");
 					displayT = display.getText();
 					tempField.setText(temp + znak + displayT);
-				} 
-				if (displayT == "" && temp != "0"){
+				}
+				if (displayT == "" && temp != "0") {
 					display.setText(temp + "9");
 					temp = display.getText();
 					tempField.setText(temp);
@@ -349,8 +378,8 @@ public class Calculator {
 					display.setText(displayT + "6");
 					displayT = display.getText();
 					tempField.setText(temp + znak + displayT);
-				} 
-				if (displayT == "" && temp != "0"){
+				}
+				if (displayT == "" && temp != "0") {
 					display.setText(temp + "6");
 					temp = display.getText();
 					tempField.setText(temp);
@@ -372,8 +401,8 @@ public class Calculator {
 					display.setText(displayT + "5");
 					displayT = display.getText();
 					tempField.setText(temp + znak + displayT);
-				} 
-				if (displayT == "" && temp != "0"){
+				}
+				if (displayT == "" && temp != "0") {
 					display.setText(temp + "5");
 					temp = display.getText();
 					tempField.setText(temp);
@@ -396,8 +425,8 @@ public class Calculator {
 					display.setText(displayT + "4");
 					displayT = display.getText();
 					tempField.setText(temp + znak + displayT);
-				} 
-				if (displayT == "" && temp != "0"){
+				}
+				if (displayT == "" && temp != "0") {
 					display.setText(temp + "4");
 					temp = display.getText();
 					tempField.setText(temp);
@@ -406,7 +435,7 @@ public class Calculator {
 					display.setText("4");
 					temp = display.getText();
 					tempField.setText(temp);
-				} 
+				}
 			}
 		});
 		button_8.setBounds(10, 171, 60, 23);
@@ -419,8 +448,8 @@ public class Calculator {
 					display.setText(displayT + "3");
 					displayT = display.getText();
 					tempField.setText(temp + znak + displayT);
-				} 
-				if (displayT == "" && temp != "0"){
+				}
+				if (displayT == "" && temp != "0") {
 					display.setText(temp + "3");
 					temp = display.getText();
 					tempField.setText(temp);
@@ -429,7 +458,7 @@ public class Calculator {
 					display.setText("3");
 					temp = display.getText();
 					tempField.setText(temp);
-				} 
+				}
 			}
 		});
 		button_9.setBounds(150, 205, 60, 23);
@@ -442,8 +471,8 @@ public class Calculator {
 					display.setText(displayT + "2");
 					displayT = display.getText();
 					tempField.setText(temp + znak + displayT);
-				} 
-				if (displayT == "" && temp != "0"){
+				}
+				if (displayT == "" && temp != "0") {
 					display.setText(temp + "2");
 					temp = display.getText();
 					tempField.setText(temp);
@@ -465,8 +494,8 @@ public class Calculator {
 					display.setText(displayT + "1");
 					displayT = display.getText();
 					tempField.setText(temp + znak + displayT);
-				} 
-				if (displayT == "" && temp != "0"){
+				}
+				if (displayT == "" && temp != "0") {
 					display.setText(temp + "1");
 					temp = display.getText();
 					tempField.setText(temp);
@@ -476,7 +505,7 @@ public class Calculator {
 					temp = display.getText();
 					tempField.setText(temp);
 				}
-				
+
 			}
 		});
 		button_11.setBounds(10, 205, 60, 23);
@@ -489,8 +518,8 @@ public class Calculator {
 					display.setText(displayT + "0");
 					displayT = display.getText();
 					tempField.setText(temp + znak + displayT);
-				} 
-				if (displayT == "" && temp != "0"){
+				}
+				if (displayT == "" && temp != "0") {
 					display.setText(temp + "0");
 					temp = display.getText();
 					tempField.setText(temp);
@@ -498,8 +527,9 @@ public class Calculator {
 				if (temp == "0") {
 					display.setText(temp);
 					tempField.setText(temp);
-				}}
-			
+				}
+			}
+
 		});
 		button_12.setBounds(80, 239, 60, 23);
 		panelButtons.add(button_12);
@@ -510,14 +540,68 @@ public class Calculator {
 		JButton button_13 = new JButton(",");
 		button_13.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (znak != "0" && display.getText().charAt(display.getText().length() - 1) != '.') {
+					if (displayT == "") {
+						displayT = "0";
+					}
+					display.setText(displayT + ".");
+					displayT = display.getText();
+					tempField.setText(temp + znak + displayT);
+
+				}
+				if (displayT == "" && temp != "0" && display.getText().charAt(display.getText().length() - 1) != '.') {
+					display.setText(temp + ".");
+					temp = display.getText();
+					tempField.setText(temp);
+
+				}
+				if (temp == "0" && display.getText().charAt(display.getText().length() - 1) != '.') {
+					display.setText(temp + ".");
+					temp = display.getText();
+					tempField.setText(temp);
+
+				}
 			}
 		});
 		button_13.setBounds(10, 239, 60, 23);
 		panelButtons.add(button_13);
-
+		// Knopka +-
 		JButton button_14 = new JButton("\u2213");
 		button_14.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (znak != "0") {
+					if (displayT.charAt(0) == '-'){
+						double minus;
+						minus = Math.abs(Double.parseDouble(displayT));
+						displayT = Double.toString(minus);
+						display.setText(displayT);
+						tempField.setText(temp + znak + displayT);
+					}else{
+					if (displayT.charAt(0) != '-' && displayT.charAt(0) != '0' && displayT != "") {
+					String minus;
+					minus = "-" + displayT;
+					displayT = minus;
+					display.setText(displayT);
+					tempField.setText(temp + znak + displayT);
+				}
+					}
+				} else {
+					if (temp.charAt(0) == '-' ){
+						int i = -1;
+						String Ltemp = Double.toString((Double.parseDouble(temp)*i));
+						temp = Ltemp;
+						display.setText(temp);
+						tempField.setText(temp);
+					}else{
+						if ( temp !="0"){
+						String minus;
+						minus = "-" + temp;
+						temp = minus;
+						display.setText(temp);
+						tempField.setText(temp);
+					}}
+					
+				}
 			}
 		});
 		button_14.setBounds(220, 91, 60, 23);
@@ -545,12 +629,11 @@ public class Calculator {
 					break;
 				}
 				display.setText(Double.toString(result));
-				tempField.setText(temp+znak+displayT+"="+Double.toString(result));
+				tempField.setText(temp + znak + displayT + "=" + Double.toString(result));
 				znak = "0";
 				temp = "0";
-				displayT ="";
-				
-				
+				displayT = "";
+
 			}
 		});
 		button_15.setBounds(150, 239, 60, 23);
@@ -561,9 +644,18 @@ public class Calculator {
 		JButton btnCe = new JButton("CE");
 		btnCe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(znak !="0"){
+						displayT = "";
+						tempField.setText(temp+znak+displayT);
+						display.setText("0");
+				}else{
+					temp = "0";
+					tempField.setText("");
+					display.setText("0");
+				}
 			}
 		});
-		btnCe.setBounds(10, 91, 60, 23);
+		btnCe.setBounds(80, 91, 60, 23);
 		panelButtons.add(btnCe);
 
 		JButton btnC = new JButton("C");
@@ -577,12 +669,21 @@ public class Calculator {
 				result = 0;
 			}
 		});
-		btnC.setBounds(80, 91, 60, 23);
+		btnC.setBounds(10, 91, 60, 23);
 		panelButtons.add(btnC);
-
+		// Backspace
 		JButton button_16 = new JButton("\u21D0");
 		button_16.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (znak != "0" && displayT != ""){
+					displayT = displayT.substring(0, displayT.length()-1);;
+					display.setText(displayT);
+					tempField.setText(temp+znak+displayT);
+				}else{
+					temp = temp.substring(0, temp.length()-1);
+					display.setText(temp);
+					tempField.setText(temp);
+				}
 			}
 		});
 		button_16.setBounds(150, 91, 60, 23);
