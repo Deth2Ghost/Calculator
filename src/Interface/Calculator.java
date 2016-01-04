@@ -186,35 +186,41 @@ public class Calculator {
 		JButton button = new JButton("/");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				znak = "/";
 				display.setText(znak);
 				var1 = Double.parseDouble(temp);
-				if (znak != "0"){
-				tempField.setText(temp+znak+displayT);	
+				if (result != 0){
+					display.setText(Double.toString(result));
+					temp = display.getText();
 				}
-				else{
-				tempField.setText(temp + " / ");
+				if (znak != "0") {
+					tempField.setText(temp + znak + displayT);
+				} else {
+					tempField.setText(temp + znak);
 				}
+				
 
 			}
 		});
 		button.setBounds(220, 137, 60, 23);
 		panelButtons.add(button);
 
-		JButton btnX = new JButton("X");
+		JButton btnX = new JButton("*");
 		btnX.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				znak = "*";
-				display.setText("X");
+				display.setText(znak);
 				var1 = Double.parseDouble(temp);
-				if (znak != "0"){
-				tempField.setText(temp+"X"+displayT);	
+				if (result != 0){
+					display.setText(Double.toString(result));
+					temp = display.getText();
 				}
-				else{
-				tempField.setText(temp + " X ");
+				if (znak != "0") {
+					tempField.setText(temp + znak + displayT);
+				} else {
+					tempField.setText(temp + znak);
 				}
-
 			}
 		});
 		btnX.setBounds(220, 171, 60, 23);
@@ -226,11 +232,14 @@ public class Calculator {
 				znak = "-";
 				display.setText(znak);
 				var1 = Double.parseDouble(temp);
-				if (znak != "0"){
-				tempField.setText(temp+znak+displayT);	
+				if (result != 0){
+					display.setText(Double.toString(result));
+					temp = display.getText();
 				}
-				else{
-				tempField.setText(temp + " - ");
+				if (znak != "0") {
+					tempField.setText(temp + znak + displayT);
+				} else {
+					tempField.setText(temp + znak);
 				}
 
 			}
@@ -242,15 +251,18 @@ public class Calculator {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				display.setText("+");
-				znak = "+";
 				
+				znak = "+";
+				display.setText(znak);
 				var1 = Double.parseDouble(temp);
-				if (znak != "0"){
-				tempField.setText(temp+znak+displayT);	
+				if (result != 0){
+					display.setText(Double.toString(result));
+					temp = display.getText();
 				}
-				else{
-				tempField.setText(temp + " + ");
+				if (znak != "0") {
+					tempField.setText(temp + znak + displayT);
+				} else {
+					tempField.setText(temp + znak);
 				}
 
 			}
@@ -264,23 +276,21 @@ public class Calculator {
 		JButton button_1 = new JButton("7");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if (znak != "0") {
+					display.setText(displayT + "7");
+					displayT = display.getText();
+					tempField.setText(temp + znak + displayT);
+				} 
+				if (displayT == "" && temp != "0"){
+					display.setText(temp + "7");
+					temp = display.getText();
+					tempField.setText(temp);
+				}
 				if (temp == "0") {
 					display.setText("7");
 					temp = display.getText();
 					tempField.setText(temp);
 				} 
-				if (znak != "0"){
-					display.setText(displayT + "7");
-					displayT = display.getText();
-					tempField.setText(temp+znak+displayT);
-				}
-				else{
-					
-					display.setText(temp + "7");
-					temp = display.getText();
-					tempField.setText(temp);
-				}
 			}
 		});
 		button_1.setBounds(10, 137, 60, 23);
@@ -289,21 +299,21 @@ public class Calculator {
 		JButton button_4 = new JButton("8");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (znak != "0") {
+					display.setText(displayT + "8");
+					displayT = display.getText();
+					tempField.setText(temp + znak + displayT);
+				} 
+				if (displayT == "" && temp != "0"){
+					display.setText(temp + "8");
+					temp = display.getText();
+					tempField.setText(temp);
+				}
 				if (temp == "0") {
 					display.setText("8");
 					temp = display.getText();
 					tempField.setText(temp);
 				} 
-				if (znak != "0"){
-					display.setText(displayT + "8");
-					displayT = display.getText();
-					tempField.setText(temp+znak+displayT);
-				}
-				else{
-					display.setText(temp + "8");
-					temp = display.getText();
-					tempField.setText(temp);
-				}
 			}
 		});
 		button_4.setBounds(80, 137, 60, 23);
@@ -312,18 +322,18 @@ public class Calculator {
 		JButton button_5 = new JButton("9");
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (temp == "0") {
-					display.setText("9");
-					temp = display.getText();
-					tempField.setText(temp);
-				} 
-				if (znak != "0"){
+				if (znak != "0") {
 					display.setText(displayT + "9");
 					displayT = display.getText();
-					tempField.setText(temp+znak+displayT);
-				}
-				else{
+					tempField.setText(temp + znak + displayT);
+				} 
+				if (displayT == "" && temp != "0"){
 					display.setText(temp + "9");
+					temp = display.getText();
+					tempField.setText(temp);
+				}
+				if (temp == "0") {
+					display.setText("9");
 					temp = display.getText();
 					tempField.setText(temp);
 				}
@@ -335,18 +345,18 @@ public class Calculator {
 		JButton button_6 = new JButton("6");
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (temp == "6") {
-					display.setText("6");
-					temp = display.getText();
-					tempField.setText(temp);
-				} 
-				if (znak != "0"){
+				if (znak != "0") {
 					display.setText(displayT + "6");
 					displayT = display.getText();
-					tempField.setText(temp+znak+displayT);
-				}
-				else{
+					tempField.setText(temp + znak + displayT);
+				} 
+				if (displayT == "" && temp != "0"){
 					display.setText(temp + "6");
+					temp = display.getText();
+					tempField.setText(temp);
+				}
+				if (temp == "0") {
+					display.setText("6");
 					temp = display.getText();
 					tempField.setText(temp);
 				}
@@ -358,21 +368,22 @@ public class Calculator {
 		JButton button_7 = new JButton("5");
 		button_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (temp == "0") {
-					display.setText("5");
-					temp = display.getText();
-					tempField.setText(temp);
-				} 
-				if (znak != "0"){
+				if (znak != "0") {
 					display.setText(displayT + "5");
 					displayT = display.getText();
-					tempField.setText(temp+znak+displayT);
-				}else{
+					tempField.setText(temp + znak + displayT);
+				} 
+				if (displayT == "" && temp != "0"){
 					display.setText(temp + "5");
 					temp = display.getText();
 					tempField.setText(temp);
 				}
-				
+				if (temp == "0") {
+					display.setText("5");
+					temp = display.getText();
+					tempField.setText(temp);
+				}
+
 			}
 		});
 		button_7.setBounds(80, 171, 60, 23);
@@ -381,21 +392,21 @@ public class Calculator {
 		JButton button_8 = new JButton("4");
 		button_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (znak != "0") {
+					display.setText(displayT + "4");
+					displayT = display.getText();
+					tempField.setText(temp + znak + displayT);
+				} 
+				if (displayT == "" && temp != "0"){
+					display.setText(temp + "4");
+					temp = display.getText();
+					tempField.setText(temp);
+				}
 				if (temp == "0") {
 					display.setText("4");
 					temp = display.getText();
 					tempField.setText(temp);
 				} 
-				if (znak != "0"){
-					display.setText(displayT + "4");
-					displayT = display.getText();
-					tempField.setText(temp+znak+displayT);
-				}
-				else{
-					display.setText(temp + "4");
-					temp = display.getText();
-					tempField.setText(temp);
-				}
 			}
 		});
 		button_8.setBounds(10, 171, 60, 23);
@@ -404,21 +415,21 @@ public class Calculator {
 		JButton button_9 = new JButton("3");
 		button_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (znak != "0") {
+					display.setText(displayT + "3");
+					displayT = display.getText();
+					tempField.setText(temp + znak + displayT);
+				} 
+				if (displayT == "" && temp != "0"){
+					display.setText(temp + "3");
+					temp = display.getText();
+					tempField.setText(temp);
+				}
 				if (temp == "0") {
 					display.setText("3");
 					temp = display.getText();
 					tempField.setText(temp);
 				} 
-				if (znak != "0"){
-					display.setText(displayT + "3");
-					displayT = display.getText();
-					tempField.setText(temp+znak+displayT);
-				}
-				else{
-					display.setText(temp + "3");
-					temp = display.getText();
-					tempField.setText(temp);
-				}
 			}
 		});
 		button_9.setBounds(150, 205, 60, 23);
@@ -427,18 +438,18 @@ public class Calculator {
 		JButton button_10 = new JButton("2");
 		button_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (temp == "0") {
-					display.setText("2");
-					temp = display.getText();
-					tempField.setText(temp);
-				} 
-				if (znak != "0"){
+				if (znak != "0") {
 					display.setText(displayT + "2");
 					displayT = display.getText();
-					tempField.setText(temp+znak+displayT);
-				}
-				else{
+					tempField.setText(temp + znak + displayT);
+				} 
+				if (displayT == "" && temp != "0"){
 					display.setText(temp + "2");
+					temp = display.getText();
+					tempField.setText(temp);
+				}
+				if (temp == "0") {
+					display.setText("2");
 					temp = display.getText();
 					tempField.setText(temp);
 				}
@@ -450,21 +461,22 @@ public class Calculator {
 		JButton button_11 = new JButton("1");
 		button_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (temp == "0") {
-					display.setText("1");
-					temp = display.getText();
-					tempField.setText(temp);
-				} 
-				if (znak != "0"){
+				if (znak != "0") {
 					display.setText(displayT + "1");
 					displayT = display.getText();
-					tempField.setText(temp+znak+displayT);
-				}
-				else{
+					tempField.setText(temp + znak + displayT);
+				} 
+				if (displayT == "" && temp != "0"){
 					display.setText(temp + "1");
 					temp = display.getText();
 					tempField.setText(temp);
 				}
+				if (temp == "0") {
+					display.setText("1");
+					temp = display.getText();
+					tempField.setText(temp);
+				}
+				
 			}
 		});
 		button_11.setBounds(10, 205, 60, 23);
@@ -473,22 +485,21 @@ public class Calculator {
 		JButton button_12 = new JButton("0");
 		button_12.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (temp == "0") {
-					display.setText("0");
-					temp = display.getText();
-					
-				} 
-				if (znak != "0"){
+				if (znak != "0") {
 					display.setText(displayT + "0");
 					displayT = display.getText();
-					tempField.setText(temp+znak+displayT);
-				}
-				else{
-					display.setText(temp);
+					tempField.setText(temp + znak + displayT);
+				} 
+				if (displayT == "" && temp != "0"){
+					display.setText(temp + "0");
 					temp = display.getText();
 					tempField.setText(temp);
 				}
-			}
+				if (temp == "0") {
+					display.setText(temp);
+					tempField.setText(temp);
+				}}
+			
 		});
 		button_12.setBounds(80, 239, 60, 23);
 		panelButtons.add(button_12);
@@ -517,15 +528,29 @@ public class Calculator {
 			public void actionPerformed(ActionEvent e) {
 				var1 = Double.parseDouble(temp);
 				var2 = Double.parseDouble(displayT);
-				switch(znak){
-				case "+": result = var1 + var2;break;
-				case "-": result = var1 - var2;break;
-				case "*": result = var1 * var2;break;
-				case "/": result = var1 / var2;break;
-				default: break;
+				switch (znak) {
+				case "+":
+					result = var1 + var2;
+					break;
+				case "-":
+					result = var1 - var2;
+					break;
+				case "*":
+					result = var1 * var2;
+					break;
+				case "/":
+					result = var1 / var2;
+					break;
+				default:
+					break;
 				}
 				display.setText(Double.toString(result));
-
+				tempField.setText(temp+znak+displayT+"="+Double.toString(result));
+				znak = "0";
+				temp = "0";
+				displayT ="";
+				
+				
 			}
 		});
 		button_15.setBounds(150, 239, 60, 23);
@@ -547,8 +572,9 @@ public class Calculator {
 				display.setText("0");
 				tempField.setText("");
 				temp = "0";
-				displayT = "0";
+				displayT = "";
 				znak = "0";
+				result = 0;
 			}
 		});
 		btnC.setBounds(80, 91, 60, 23);
