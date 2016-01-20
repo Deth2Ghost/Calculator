@@ -12,10 +12,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowAdapter;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 public class Calculator {
 	String temp = "0";
@@ -62,39 +61,9 @@ public class Calculator {
 	public void initialize() {
 
 		frame = new JFrame();
-		frame.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowActivated(WindowEvent e) {
-				frame.addKeyListener(new KeyAdapter() {
-					@Override
-					public void keyPressed(KeyEvent e) {
-						if (e.getKeyChar() == '7'){
-							if (znak != "0") {
-								display.setText(displayT + "7");
-								displayT = display.getText();
-								tempField.setText(temp + znak + displayT);
-							}
-							if (displayT == "" && temp != "0") {
-								display.setText(temp + "7");
-								temp = display.getText();
-								tempField.setText(temp);
-							}
-							if (temp == "0") {
-								display.setText("7");
-								temp = display.getText();
-								tempField.setText(temp);
-							}
-						}
-					}
-				});
-			}
-		});
-		
-	
-		
+		frame.setResizable(false);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Calculator.class.getResource("/javax/swing/plaf/metal/icons/ocean/computer.gif")));
 		frame.setTitle("\u041A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440");
-		frame.setResizable(false);
 		frame.setBounds(100, 100, 303, 342);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -352,8 +321,7 @@ public class Calculator {
 					}
 					displayT = "";
 				}
-				znak = "+";
-				display.setText(znak);
+				
 				
 				if (result != 0 && temp == "0") {
 					display.setText(Double.toString(result));
@@ -374,6 +342,17 @@ public class Calculator {
 
 		// Panel cifr
 		JButton button_1 = new JButton("7");
+		
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			    button_1.setBackground(Color.ORANGE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+			    button_1.setBackground(Color.LIGHT_GRAY);
+			}
+		});
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (znak != "0") {
@@ -681,7 +660,15 @@ public class Calculator {
 		JButton button_15 = new JButton("=");
 		button_15.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				var1 = Double.parseDouble(temp);
+			    
+				if (temp != "0"){
+				    if (Integer.parseInt(displayT) == 0 || Double.parseDouble(displayT) <= 0.0){
+					tempField.setText("На ноль делить нельзя");
+					znak = "0";
+					temp = "0";
+					displayT = "";
+				    }else{
+				    var1 = Double.parseDouble(temp);
 				var2 = Double.parseDouble(displayT);
 				switch (znak) {
 				case "+":
@@ -710,7 +697,8 @@ public class Calculator {
 				znak = "0";
 				temp = "0";
 				displayT = "";
-
+				}
+				}
 			}
 		});
 		button_15.setBounds(150, 239, 60, 23);
@@ -767,7 +755,7 @@ public class Calculator {
 		panelButtons.add(button_16);
 		
 		display = new JTextField();
-		display.setBounds(10, 26, 270, 20);
+		display.setBounds(10, 13, 270, 33);
 		panelButtons.add(display);
 		display.setColumns(30);
 		display.setText("0");
